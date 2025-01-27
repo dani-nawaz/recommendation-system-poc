@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('./assets/fonts/Helvetica.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('./assets/fonts/Helvetica-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('./assets/fonts/Helvetica-BoldOblique.ttf') format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Helvetica Compressed';
+    src: url('./assets/fonts/helvetica-compressed-5871d14b6903a.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Light';
+    src: url('./assets/fonts/helvetica-light-587ebe5a59211.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('./assets/fonts/Helvetica-Oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Helvetica Rounded Bold';
+    src: url('./assets/fonts/helvetica-rounded-bold-5871d05ead8de.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    @apply bg-gray-100;
+    font-family: 'Helvetica', sans-serif;
+}
+
+h1 {
+    @apply text-5xl font-bold text-gray-800;
+    font-family: 'Helvetica Compressed', sans-serif;
+}
+
+h2 {
+    @apply text-gray-700;
+    font-family: 'Helvetica', sans-serif;
+}
+
+h3 {
+    @apply text-gray-700;
+    font-family: 'Helvetica Light', sans-serif;
+}
+
+p {
+    @apply text-gray-600;
+    font-family: 'Helvetica Light', sans-serif;
+}
+
+.success {
+    @apply bg-green-50 text-green-500;
+}
+
+.error {
+    @apply bg-red-50 text-red-500;
+}
