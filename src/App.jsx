@@ -1,10 +1,16 @@
 'use client'
 import React, {useEffect, useState} from 'react'
 import HowItWorks from "../sections/HowItWorks.jsx";
+import Case from "../sections/Case.jsx";
+import Problem from "../sections/Problem.jsx";
+import {Solution} from "../sections/Solution.jsx";
 
 function App() {
     return (<>
         <Layout>
+            <Case/>
+            <Problem/>
+            <Solution/>
             <HowItWorks/>
         </Layout>
     </>)
