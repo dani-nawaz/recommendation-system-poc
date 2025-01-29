@@ -3,16 +3,17 @@ import {User} from "lucide-react"
 import React from "react"
 
 export default function ProfileCard
-    ({title, description, percentage}) {
+    ({title, description,percentage, index}) {
     const color = percentage > 50 ? "bg-green-100" : "bg-red-100"
     const text = percentage > 50 ? "text-green-600" : "text-red-600"
 
     return (
         <motion.div
             className="bg-gray-50 rounded overflow-hidden w-full flex flex-col justify-between"
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5}}
+            key={title}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.1 }}
         >
             <div className="p-2">
                 <div className="flex items-center gap-2">

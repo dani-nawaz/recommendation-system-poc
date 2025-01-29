@@ -146,6 +146,7 @@ export default function HowItWorks() {
                 How it works?
             </motion.h1>
             <FirstStep onProposalClick={handleProposalClick}/>
+            <FourthStep/>
             {currentStep >= 1 && (
                 <>
                     <SecondStep onEvaluatorListClick={handleEvaluatorListClick}/>
@@ -275,6 +276,20 @@ function ThirdStep({onRecommendationClick}) {
 }
 
 function FourthStep() {
+    const [currentSet, setCurrentSet] = useState(0);
+    const evaluatorSets = [
+        [
+            { name: "Sarah Chen", role: "CEO", percentage: 80, icon: "👩‍💼" },
+            { name: "John Doe", role: "CTO", percentage: 70, icon: "👨‍💻" },
+            { name: "Emma Watson", role: "CFO", percentage: 75, icon: "👩‍💼" }
+        ],
+        [
+            { name: "Mike Ross", role: "CTO", percentage: 85, icon: "👨‍💻" },
+            { name: "Rachel Green", role: "COO", percentage: 65, icon: "👩‍💼" },
+            { name: "David Clark", role: "CTO", percentage: 90, icon: "👨‍💻" }
+        ]
+    ];
+
     return (
         <motion.div
             className="flex flex-col gap-4"
@@ -282,13 +297,68 @@ function FourthStep() {
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5}}
         >
-            <h2 className="text-2xl">4. Get instant, AI-optimized evaluator recommendations</h2>
-            <div className="flex gap-4">
-                <ProfileCard title="Sarah Chen" description="CEO" percentage={80}/>
-                <ProfileCard title="John Doe" description="CTO" percentage={20}/>
-                <ProfileCard title="Emma Watson" description="CFO" percentage={50}/>
+            <div className="flex items-center justify-between">
+<h2 className="text-2xl">4. Get instant, AI-optimized evaluator recommendations</h2>
+            <div className="flex justify-between items-center">
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setCurrentSet(prev => Math.max(0, prev - 1))}
+                    disabled={currentSet === 0}
+                    className={`p-2 rounded-full ${
+                        currentSet === 0 
+                            ? 'text-gray-400 cursor-not-allowed' 
+                            : 'text-blue-500 hover:bg-blue-50'
+                    }`}
+                >
+                    ←
+                </motion.button>
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setCurrentSet(prev => Math.min(evaluatorSets.length - 1, prev + 1))}
+                    disabled={currentSet === evaluatorSets.length - 1}
+                    className={`p-2 rounded-full ${
+                        currentSet === evaluatorSets.length - 1 
+                            ? 'text-gray-400 cursor-not-allowed' 
+                            : 'text-blue-500 hover:bg-blue-50'
+                    }`}
+                >
+                    →
+                </motion.button>
+            </div>
+            </div>
+            
+            <motion.div 
+                className="flex gap-4"
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{duration: 0.5}}
+            >
+                {evaluatorSets[currentSet].map((evaluator, index) => (
+                    <ProfileCard 
+                        index={index}
+                        key={evaluator.name}
+                        title={evaluator.name}
+                        description={evaluator.role}
+                        percentage={evaluator.percentage}
+                    />
+                ))}
+            </motion.div>
+
+            <div className="flex justify-center items-center mt-4 w-full">
+                <div className="flex gap-2">
+                    {evaluatorSets.map((_, idx) => (
+                        <motion.div
+                            key={idx}
+                            className={`w-2 h-2 rounded-full ${
+                                currentSet === idx ? 'bg-blue-500' : 'bg-gray-200'
+                            }`}
+                        />
+                    ))}
+                </div>
             </div>
         </motion.div>
-    )
+    );
 }
 
