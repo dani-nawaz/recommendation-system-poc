@@ -21,20 +21,20 @@ export default App
 const Layout = ({children}) => {
     const [activeSection, setActiveSection] = useState(0);
     const [isScrolling, setIsScrolling] = useState(false);
+    const handleScroll = (e) => {
+        if (isScrolling) return;
+
+        setIsScrolling(true);
+        setTimeout(() => setIsScrolling(false), 1000);
+
+        if (e.deltaY > 0 && activeSection < children.length - 1) {
+            setActiveSection(prev => prev + 1);
+        } else if (e.deltaY < 0 && activeSection > 0) {
+            setActiveSection(prev => prev - 1);
+        }
+    };
 
     useEffect(() => {
-        const handleScroll = (e) => {
-            if (isScrolling) return;
-
-            setIsScrolling(true);
-            setTimeout(() => setIsScrolling(false), 1000);
-
-            if (e.deltaY > 0 && activeSection < children.length - 1) {
-                setActiveSection(prev => prev + 1);
-            } else if (e.deltaY < 0 && activeSection > 0) {
-                setActiveSection(prev => prev - 1);
-            }
-        };
 
         window.addEventListener('wheel', handleScroll);
         return () => window.removeEventListener('wheel', handleScroll);
@@ -60,7 +60,7 @@ const Layout = ({children}) => {
                     <div className="w-full h-full">
                         <section className="px-26 h-screen">
                             <div className="border-l border-gray-400 px-6 h-full flex items-center">
-                                {child}
+                                {React.cloneElement(child, { setActiveSection })}
                             </div>
                         </section>
                     </div>

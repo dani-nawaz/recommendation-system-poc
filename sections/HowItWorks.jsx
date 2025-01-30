@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
 import {ParticleEffect} from "./particle-effect"
 import ProfileCard from "./ProfileCard"
+import {Check} from "lucide-react"
 
 const mailingLists = [
     {
@@ -356,26 +357,51 @@ export default function HowItWorks() {
 function FirstStep({
                        onProposalClick
                    }) {
+    const [selectedProposal, setSelectedProposal] = useState(null)
+
+    const handleProposalClick = (id) => {
+        setSelectedProposal(id)
+        onProposalClick(id)
+    }
+
     return (
         <motion.div
-            className="flex flex-col gap-4"
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5}}
+            className="flex flex-col gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
         >
-            <h2 className="text-2xl">1. Select Any Proposal</h2>
-            <p className="text-lg">Select any proposal from the list below to get started.</p>
-            <div className="flex gap-4">
+            <h2 className="text-3xl font-semibold text-gray-800">1. Select Any Proposal</h2>
+            <p className="text-lg text-gray-600">Select any proposal from the list below to get started.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {mailingLists.map((mailingList) => (
                     <motion.div
                         key={mailingList.id}
-                        className="flex flex-col gap-2 bg-gray-50 hover:bg-white hover:border-gray-500 p-4 rounded cursor-pointer"
-                        onClick={() => onProposalClick(mailingList.id)}
-                        whileHover={{scale: 1.05}}
-                        whileTap={{scale: 0.95}}
+                        className={`relative flex flex-col gap-3 bg-white p-6 rounded-lg cursor-pointer transition-all duration-300 ease-in-out
+                        ${
+                            selectedProposal === mailingList.id
+                                ? "ring-2 ring-blue-500 shadow-lg shadow-blue-100"
+                                : "hover:shadow-md border border-gray-200"
+                        }`}
+                        onClick={() => handleProposalClick(mailingList.id)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                     >
-                        <h3 className="text-lg font-bold">{mailingList.title}</h3>
-                        <p className="text-sm">{mailingList.description}</p>
+                        <AnimatePresence>
+                            {selectedProposal === mailingList.id && (
+                                <motion.div
+                                    className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full p-1"
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.5 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <Check size={16} />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                        <h3 className="text-xl font-semibold text-gray-800">{mailingList.title}</h3>
+                        <p className="text-sm text-gray-600">{mailingList.description}</p>
                     </motion.div>
                 ))}
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Solution() {
+export function Solution({setActiveSection}) {
     return (
         <article className="flex flex-col gap-12 justify-start">
             <div className="flex flex-col gap-4">
@@ -62,6 +62,7 @@ export function Solution() {
                         fill="#111827"/>
                 </svg>
                 <button
+                 onClick={()=>setActiveSection(3)}
                     className="bg-cyan-600 text-2xl text-gray-50 px-6 py-4 flex gap-4 rounded w-max cursor-pointer items-center">
                     Get Ai Recommendation?
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
