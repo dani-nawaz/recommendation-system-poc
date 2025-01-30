@@ -13,13 +13,13 @@ function ProposalCard({title, description}) {
     )
 }
 
-export function EvaluatorCard({name, title}) {
+export function EvaluatorCard({name, title, src}) {
     return (
         <div className="bg-gray-50 p-6 rounded flexflex-wrap items-center justify-between sm:flex-nowrap">
             <div className="flex flex-col gap-2">
                 <div className="shrink-0">
                     <img className="size-12 rounded-full"
-                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                         src={src || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"}
                          alt=""/>
                 </div>
                 <div className="">
@@ -47,12 +47,13 @@ export default function Problem() {
                     Finding the right evaluator among thousands of experts for each unique proposal.
                 </h3>
             </div>
-            <div className="flex gap-12">
-                <ProposalCard title="AeroSpace Vehicle"
-                              description="Each proposal is unique and requires a unique expert."/>
-                <ProposalCard title="Guiding System" description="Thousands of proposals are submitted daily."/>
-                <ProposalCard title="Guiding System" description="Thousands of proposals are submitted daily."/>
-                <ProposalCard title="Guiding System" description="Thousands of proposals are submitted daily."/>
+            <div className="flex gap-6">
+                <ProposalCard title="GreenTech Innovation Grant"
+                              description="A proposal focused on developing biodegradable batteries that provide long-lasting energy storage without harming the environment. The goal is to replace lithium-ion batteries with sustainable alternatives."/>
+                <ProposalCard title="Next-Gen EdTech Platform"
+                              description="A gamified learning app that teaches kids financial literacy through interactive storytelling and virtual investments. The app aims to make learning about money fun and engaging for children aged 8–14."/>
+                <ProposalCard title="AI-Powered Remote Health Diagnostics"
+                              description="A telemedicine service with smart wearables that track vital signs and detect early symptoms of chronic diseases like diabetes and heart conditions, helping doctors provide remote consultations."/>
             </div>
             <div className="flex gap-12">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-full" width="477" height="194"
@@ -67,11 +68,12 @@ export default function Problem() {
                         stroke="black" strokeWidth="3" strokeLinecap="round"/>
                 </svg>
             </div>
-            <div className="flex gap-12">
-                <EvaluatorCard name="Jane Cooper" title="Regional Paradigm Technician"/>
-                <EvaluatorCard name="John Doe" title="Lead Solutions Architect"/>
-                <EvaluatorCard name="Alice Smith" title="Principal Data Scientist"/>
-                <EvaluatorCard name="Bob Johnson" title="Senior Software Engineer"/>
+            <div className="flex gap-6">
+                <EvaluatorCard name="Dr. Evelyn Carter" title="Renewable Energy Scientist & Rock Climber"
+                               src="https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"/>
+                <EvaluatorCard name="David Chang" title="Surgeon & Street Food Critic"/>
+                <EvaluatorCard name="Sophia Lin" title="Venture Capitalist & Amateur Beekeeper"
+                               src="https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"/>
             </div>
         </article>
 

@@ -4,82 +4,253 @@ import React, {useEffect, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
 import {ParticleEffect} from "./particle-effect"
 import ProfileCard from "./ProfileCard"
-import { use } from "react"
 
 const mailingLists = [
-    {id: 1, title: "Newsletter", description: "Last message sent an hour ago", users: "621 users"},
-    {id: 2, title: "Existing customers", description: "Last message sent 2 weeks ago", users: "1200 users"},
-    {id: 3, title: "Trial users", description: "Last message sent 4 days ago", users: "2740 users"},
+    {
+        id: 1,
+        title: "GreenTech Innovation Grant",
+        description: "Developing biodegradable batteries for long-lasting energy storage without harming the environment.",
+        users: "621 users"
+    },
+    {
+        id: 2,
+        title: "Next-Gen EdTech Platform",
+        description: "A gamified learning app teaching kids financial literacy through interactive storytelling and virtual investments.",
+        users: "1200 users"
+    },
+    {
+        id: 3,
+        title: "AI-Powered Remote Health Diagnostics",
+        description: "Telemedicine service with smart wearables tracking vital signs and detecting early symptoms of chronic diseases.",
+        users: "2740 users"
+    },
 ]
+const getRandomPercentage = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const ThinkingProcess = ({ steps, isVisible}) => {
+// GreenTech Innovation Grant
+const greenTechEvaluators = [
+    [
+        {
+            name: "Dr. Evelyn Carter",
+            role: "Renewable Energy Scientist & Rock Climber",
+            description: "Holds a PhD in sustainable energy from MIT. Developed algae-based biofuel for NASA's Mars missions. Spends weekends rock climbing and testing solar-powered camping gear.",
+            percentage: getRandomPercentage(76, 100),
+            icon: "🔬"
+        },
+        {
+            name: "Max “The Scrap King” Rodriguez",
+            role: "Industrial Recycling Innovator",
+            description: "Started a business turning electronic waste into art. Designed a system that converts old car batteries into home power banks. Once built a solar-powered DJ booth for Burning Man.",
+            percentage: getRandomPercentage(51, 75),
+            icon: "♻️"
+        }
+    ],
+    [
+        {
+            name: "Sophia Lin",
+            role: "Venture Capitalist & Amateur Beekeeper",
+            description: "Invests in clean energy startups, including electric aviation. Former UN policy advisor on carbon reduction strategies. Owns a bee farm and advocates for sustainable urban farming.",
+            percentage: getRandomPercentage(26, 50),
+            icon: "🐝"
+        },
+        {
+            name: "John Doe",
+            role: "CTO",
+            percentage: getRandomPercentage(0, 25),
+            icon: "👨‍💻",
+            description: "CTO with expertise in developing sustainable technology solutions."
+        }
+    ],
+    [
+        {
+            name: "Emma Watson",
+            role: "CFO",
+            percentage: getRandomPercentage(0, 25),
+            icon: "👩‍💼",
+            description: "CFO with a focus on financial strategies for green tech companies."
+        },
+        {
+            name: "Chef Lorenzo De Luca",
+            role: "Michelin-Starred Chef & Food Innovator",
+            description: "Uses AI to predict food trends and design experimental recipes. Co-developed a 'smart kitchen assistant' powered by NLP.",
+            percentage: getRandomPercentage(0, 25),
+            icon: "🍽️"
+        }
+    ]
+];
+
+// AI-Powered Remote Health Diagnostics
+const aiHealthEvaluators = [
+    [
+        {
+            name: "Dr. Aisha Khan",
+            role: "Medical AI Researcher & Aspiring Stand-up Comedian",
+            description: "Developed AI tools for early cancer detection. Runs a TikTok channel explaining medical AI using memes. Tested her AI models on herself after eating questionable street food.",
+            percentage: getRandomPercentage(76, 100),
+            icon: "🩺"
+        },
+        {
+            name: "David Chang",
+            role: "Surgeon & Street Food Critic",
+            description: "Performed the first AI-assisted robotic surgery in his hospital. Writes anonymous food reviews for hole-in-the-wall restaurants. Can predict his patients’ cholesterol levels based on their lunch orders.",
+            percentage: getRandomPercentage(51, 75),
+            icon: "🍲"
+        }
+    ],
+    [
+        {
+            name: "Emily Carter",
+            role: "FDA Compliance Expert & Former Punk Rock Drummer",
+            description: "Ensures AI health tech meets regulatory standards. Once toured Europe as a drummer in an all-female punk band. Thinks health regulations are harder to navigate than music contracts.",
+            percentage: getRandomPercentage(26, 50),
+            icon: "🥁"
+        },
+        {
+            name: "Mike Ross",
+            role: "CTO",
+            percentage: getRandomPercentage(0, 25),
+            icon: "👨‍💻",
+            description: "CTO with a focus on integrating AI in healthcare systems."
+        }
+    ],
+    [
+        {
+            name: "David Clark",
+            role: "CTO",
+            percentage: getRandomPercentage(0, 25),
+            icon: "👨‍💻",
+            description: "CTO specializing in AI-driven medical devices."
+        },
+        {
+            name: "Chef Lorenzo De Luca",
+            role: "Michelin-Starred Chef & Food Innovator",
+            description: "Uses AI to predict food trends and design experimental recipes. Co-developed a 'smart kitchen assistant' powered by NLP.",
+            percentage: getRandomPercentage(0, 25),
+            icon: "🍽️"
+        }
+    ]
+];
+
+// Next-Gen EdTech Platform
+const edTechEvaluators = [
+    [
+        {
+            name: "Michael Reeves",
+            role: "EdTech Product Designer & Cognitive Scientist",
+            description: "Led UX for a top adaptive learning startup acquired by Google. Developed AI-based tutoring software for dyslexic students. Former Stanford professor specializing in AI and education.",
+            percentage: getRandomPercentage(76, 100),
+            icon: "📚"
+        },
+        {
+            name: "Dr. Fatima Hassan",
+            role: "AI & Learning Analytics Expert",
+            description: "Built predictive learning models for underprivileged students. Published research on AI-based personalized education. Former Chief Learning Scientist at a global EdTech firm.",
+            percentage: getRandomPercentage(51, 75),
+            icon: "🧠"
+        }
+    ],
+    [
+        {
+            name: "Carlos Mendez",
+            role: "Education Policy & Innovation Strategist",
+            description: "Worked with governments to implement AI in national curriculums. Advisor for UNESCO on technology-driven education reforms. Evaluated 50+ EdTech proposals for large-scale funding initiatives.",
+            percentage: getRandomPercentage(26, 50),
+            icon: "🎓"
+        },
+        {
+            name: "Sarah Chen",
+            role: "CEO",
+            percentage: getRandomPercentage(0, 25),
+            icon: "👩‍💼",
+            description: "CEO with a background in leading EdTech companies."
+        }
+    ],
+    [
+        {
+            name: "John Doe",
+            role: "CTO",
+            percentage: getRandomPercentage(0, 25),
+            icon: "👨‍💻",
+            description: "CTO with expertise in developing educational technologies."
+        },
+        {
+            name: "Chef Lorenzo De Luca",
+            role: "Michelin-Starred Chef & Food Innovator",
+            description: "Uses AI to predict food trends and design experimental recipes. Co-developed a 'smart kitchen assistant' powered by NLP.",
+            percentage: getRandomPercentage(0, 25),
+            icon: "🍽️"
+        }
+    ]
+];
+const set = [greenTechEvaluators, aiHealthEvaluators, edTechEvaluators]
+const ThinkingProcess = ({steps, isVisible}) => {
 
     const [currentStep, setCurrentStep] = useState(0)
 
     useEffect(() => {
         if (isVisible) {
             const interval = setInterval(() => {
-            setCurrentStep((prev) => (prev + 1) % steps.length)
+                setCurrentStep((prev) => (prev + 1) % steps.length)
             }, 2000)
             return () => clearInterval(interval)
         }
-        }, [isVisible, steps.length])
+    }, [isVisible, steps.length])
 
     return (
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
-            className="my-4 -mt-4 bg-gray-50 p-4 rounded-lg"
-          >
-            {steps.map((step, index) => (
-              <div key={step} className="flex items-start">
-                <div className="flex flex-col items-center">
-                  <motion.div
-                    className={`w-4 h-4 rounded-full ${
-                      index < currentStep ? "bg-green-500" : index === currentStep ? "bg-blue-500" : "bg-gray-300"
-                    }`}
-                    initial={{ scale: 0 }}
-                    animate={{
-                      scale: index === currentStep ? [1, 1.2, 1] : 1,
-                    }}
-                    transition={{
-                      duration: 1,
-                      repeat: index === currentStep ? Number.POSITIVE_INFINITY : 0,
-                      repeatType: "reverse",
-                    }}
-                  />
-                  {index < steps.length - 1 && (
-                    <motion.div
-                      className="w-0.5 h-6 bg-gray-300"
-                      initial={{ scaleY: 0 }}
-                      animate={{ scaleY: index < currentStep ? 1 : 0 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  )}
-                </div>
-                <motion.span
-                  className={`ml-3 ${
-                    index < currentStep
-                      ? "text-green-600"
-                      : index === currentStep
-                        ? "text-blue-600 font-medium"
-                        : "text-gray-500"
-                  }`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.5, duration: 0.5 }}
+        <AnimatePresence>
+            {isVisible && (
+                <motion.div
+                    initial={{opacity: 0, height: 0}}
+                    animate={{opacity: 1, height: "auto"}}
+                    exit={{opacity: 0, height: 0}}
+                    transition={{duration: 0.5}}
+                    className="my-4 -mt-4 bg-gray-50 p-4 rounded-lg"
                 >
-                  {step}
-                </motion.span>
-              </div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+                    {steps.map((step, index) => (
+                        <div key={step} className="flex items-start">
+                            <div className="flex flex-col items-center">
+                                <motion.div
+                                    className={`w-4 h-4 rounded-full ${
+                                        index < currentStep ? "bg-green-500" : index === currentStep ? "bg-blue-500" : "bg-gray-300"
+                                    }`}
+                                    initial={{scale: 0}}
+                                    animate={{
+                                        scale: index === currentStep ? [1, 1.2, 1] : 1,
+                                    }}
+                                    transition={{
+                                        duration: 1,
+                                        repeat: index === currentStep ? Number.POSITIVE_INFINITY : 0,
+                                        repeatType: "reverse",
+                                    }}
+                                />
+                                {index < steps.length - 1 && (
+                                    <motion.div
+                                        className="w-0.5 h-6 bg-gray-300"
+                                        initial={{scaleY: 0}}
+                                        animate={{scaleY: index < currentStep ? 1 : 0}}
+                                        transition={{duration: 0.5}}
+                                    />
+                                )}
+                            </div>
+                            <motion.span
+                                className={`ml-3 ${
+                                    index < currentStep
+                                        ? "text-green-600"
+                                        : index === currentStep
+                                            ? "text-blue-600 font-medium"
+                                            : "text-gray-500"
+                                }`}
+                                initial={{opacity: 0, x: -20}}
+                                animate={{opacity: 1, x: 0}}
+                                transition={{delay: index * 0.5, duration: 0.5}}
+                            >
+                                {step}
+                            </motion.span>
+                        </div>
+                    ))}
+                </motion.div>
+            )}
+        </AnimatePresence>
     )
 }
 
@@ -88,8 +259,11 @@ export default function HowItWorks() {
     const [showThinking, setShowThinking] = useState(false)
     const [thinkingSteps, setThinkingSteps] = useState([])
     const [showParticles, setShowParticles] = useState(false)
+    const [evaluatorSet, setEvaluatorSet] = useState(set[0])
+    console.log(evaluatorSet, "SSSSS")
 
-    const handleProposalClick = () => {
+    const handleProposalClick = (id) => {
+        setEvaluatorSet(set[id - 1])
         setThinkingSteps([
             "Thinking...",
             "Analyzing proposal content",
@@ -171,7 +345,7 @@ export default function HowItWorks() {
                     animate={{opacity: 1, scale: 1}}
                     transition={{duration: 0.5, type: "spring"}}
                 >
-                    <FourthStep/>
+                    <FourthStep evaluatorSets={evaluatorSet}/>
                 </motion.div>
             )}
             <ThinkingProcess steps={thinkingSteps} isVisible={showThinking}/>
@@ -196,7 +370,7 @@ function FirstStep({
                     <motion.div
                         key={mailingList.id}
                         className="flex flex-col gap-2 bg-gray-50 hover:bg-white hover:border-gray-500 p-4 rounded cursor-pointer"
-                        onClick={onProposalClick}
+                        onClick={() => onProposalClick(mailingList.id)}
                         whileHover={{scale: 1.05}}
                         whileTap={{scale: 0.95}}
                     >
@@ -220,50 +394,50 @@ function SecondStep({onEvaluatorListClick}) {
             <h2 className="text-2xl">2. Select Evaluators List</h2>
             <p className="text-lg">Select any evaluators from the list below to get started.</p>
             <div className="flex gap-4">
-                          {discussions.map((discussion) => (
-                            <motion.div
-                                    className="flex flex-col gap-2 bg-gray-50 hover:bg-white hover:border-gray-500 p-4 rounded cursor-pointer"
-                                    onClick={onEvaluatorListClick}
-                                    whileHover={{scale: 1.05}}
-                                    whileTap={{scale: 0.95}}
-                                    key={discussion.id}
-                            >
-                              <div>
-                                <p className="text-sm/6 font-semibold text-gray-900">
-                                  <a href={discussion.href} className="hover:underline">
+                {discussions.map((discussion) => (
+                    <motion.div
+                        className="flex flex-col gap-2 bg-gray-50 hover:bg-white hover:border-gray-500 p-4 rounded cursor-pointer"
+                        onClick={onEvaluatorListClick}
+                        whileHover={{scale: 1.05}}
+                        whileTap={{scale: 0.95}}
+                        key={discussion.id}
+                    >
+                        <div>
+                            <p className="text-sm/6 font-semibold text-gray-900">
+                                <a href={discussion.href} className="hover:underline">
                                     {discussion.title}
-                                  </a>
-                                </p>
-                                <div className="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500">
-                                  <p>
+                                </a>
+                            </p>
+                            <div className="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500">
+                                <p>
                                     <a href={discussion.author.href} className="hover:underline">
-                                      {discussion.author.name}
+                                        {discussion.author.name}
                                     </a>
-                                  </p>
-                                  <svg viewBox="0 0 2 2" className="size-0.5 fill-current">
-                                    <circle r={1} cx={1} cy={1} />
-                                  </svg>
-                                  <p>
+                                </p>
+                                <svg viewBox="0 0 2 2" className="size-0.5 fill-current">
+                                    <circle r={1} cx={1} cy={1}/>
+                                </svg>
+                                <p>
                                     <time dateTime={discussion.dateTime}>{discussion.date}</time>
-                                  </p>
-                                </div>
-                              </div>
-                              <dl className="flex w-full flex-none justify-between gap-x-8 sm:w-auto">
-                                <div className="flex -space-x-0.5">
-                                  <dt className="sr-only">Commenters</dt>
-                                  {discussion.commenters.map((commenter) => (
+                                </p>
+                            </div>
+                        </div>
+                        <dl className="flex w-full flex-none justify-between gap-x-8 sm:w-auto">
+                            <div className="flex -space-x-0.5">
+                                <dt className="sr-only">Commenters</dt>
+                                {discussion.commenters.map((commenter) => (
                                     <dd key={commenter.id}>
-                                      <img
-                                        alt={commenter.name}
-                                        src={commenter.imageUrl}
-                                        className="size-6 rounded-full bg-gray-50 ring-2 ring-white"
-                                      />
+                                        <img
+                                            alt={commenter.name}
+                                            src={commenter.imageUrl}
+                                            className="size-6 rounded-full bg-gray-50 ring-2 ring-white"
+                                        />
                                     </dd>
-                                  ))}
-                                </div>
-                              </dl>
-                            </motion.div>
-                          ))}
+                                ))}
+                            </div>
+                        </dl>
+                    </motion.div>
+                ))}
             </div>
         </motion.div>
     )
@@ -306,21 +480,11 @@ function ThirdStep({onRecommendationClick}) {
     )
 }
 
-function FourthStep() {
+function FourthStep({evaluatorSets}) {
     const [currentSet, setCurrentSet] = useState(0);
-    const evaluatorSets = [
-        [
-            { name: "Sarah Chen", role: "CEO", percentage: 80, icon: "👩‍💼" },
-            { name: "John Doe", role: "CTO", percentage: 70, icon: "👨‍💻" },
-            { name: "Emma Watson", role: "CFO", percentage: 75, icon: "👩‍💼" }
-        ],
-        [
-            { name: "Mike Ross", role: "CTO", percentage: 85, icon: "👨‍💻" },
-            { name: "Rachel Green", role: "COO", percentage: 65, icon: "👩‍💼" },
-            { name: "David Clark", role: "CTO", percentage: 90, icon: "👨‍💻" }
-        ]
-    ];
 
+    if (!evaluatorSets) return null
+    console.log(evaluatorSets)
     return (
         <motion.div
             className="flex flex-col gap-4"
@@ -329,49 +493,50 @@ function FourthStep() {
             transition={{duration: 0.5}}
         >
             <div className="flex items-center justify-between">
-<h2 className="text-2xl">4. Get instant, AI-optimized evaluator recommendations</h2>
-            <div className="flex justify-between items-center">
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setCurrentSet(prev => Math.max(0, prev - 1))}
-                    disabled={currentSet === 0}
-                    className={`p-2 rounded-full ${
-                        currentSet === 0 
-                            ? 'text-gray-400 cursor-not-allowed' 
-                            : 'text-blue-500 hover:bg-blue-50'
-                    }`}
-                >
-                    ←
-                </motion.button>
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setCurrentSet(prev => Math.min(evaluatorSets.length - 1, prev + 1))}
-                    disabled={currentSet === evaluatorSets.length - 1}
-                    className={`p-2 rounded-full ${
-                        currentSet === evaluatorSets.length - 1 
-                            ? 'text-gray-400 cursor-not-allowed' 
-                            : 'text-blue-500 hover:bg-blue-50'
-                    }`}
-                >
-                    →
-                </motion.button>
+                <h2 className="text-2xl">4. Get instant, AI-optimized evaluator recommendations</h2>
+                <div className="flex justify-between items-center">
+                    <motion.button
+                        whileHover={{scale: 1.05}}
+                        whileTap={{scale: 0.95}}
+                        onClick={() => setCurrentSet(prev => Math.max(0, prev - 1))}
+                        disabled={currentSet === 0}
+                        className={`p-2 rounded-full ${
+                            currentSet === 0
+                                ? 'text-gray-400 cursor-not-allowed'
+                                : 'text-blue-500 hover:bg-blue-50'
+                        }`}
+                    >
+                        ←
+                    </motion.button>
+                    <motion.button
+                        whileHover={{scale: 1.05}}
+                        whileTap={{scale: 0.95}}
+                        onClick={() => setCurrentSet(prev => Math.min(evaluatorSets.length - 1, prev + 1))}
+                        disabled={currentSet === evaluatorSets.length - 1}
+                        className={`p-2 rounded-full ${
+                            currentSet === evaluatorSets.length - 1
+                                ? 'text-gray-400 cursor-not-allowed'
+                                : 'text-blue-500 hover:bg-blue-50'
+                        }`}
+                    >
+                        →
+                    </motion.button>
+                </div>
             </div>
-            </div>
-            
-            <motion.div 
-                className="flex gap-4"
+
+            <motion.div
+                className="grid grid-cols-2 gap-4"
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
                 transition={{duration: 0.5}}
             >
                 {evaluatorSets[currentSet].map((evaluator, index) => (
-                    <ProfileCard 
+                    <ProfileCard
                         index={index}
                         key={evaluator.name}
                         title={evaluator.name}
-                        description={evaluator.role}
+                        role={evaluator.role}
+                        description={evaluator.description}
                         percentage={evaluator.percentage}
                     />
                 ))}
@@ -395,118 +560,118 @@ function FourthStep() {
 
 
 const discussions = [
-  {
-    id: 1,
-    title: 'Set 1',
-    href: '#',
-    author: { name: 'Leslie Alexander', href: '#' },
-    date: '2d ago',
-    dateTime: '2023-01-23T22:34Z',
-    status: 'active',
-    totalComments: 24,
-    commenters: [
-      {
-        id: 12,
-        name: 'Emma Dorsey',
-        imageUrl:
-          'https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 6,
-        name: 'Tom Cook',
-        imageUrl:
-          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 4,
-        name: 'Lindsay Walton',
-        imageUrl:
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 16,
-        name: 'Benjamin Russel',
-        imageUrl:
-          'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 23,
-        name: 'Hector Gibbons',
-        imageUrl:
-          'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: 'Set 2',
-    href: '#',
-    author: { name: 'Dries Vincent', href: '#' },
-    date: '3d ago',
-    dateTime: '2023-01-22T12:59Z',
-    status: 'resolved',
-    totalComments: 22,
-    commenters: [
-      {
-        id: 19,
-        name: 'Lawrence Hunter',
-        imageUrl:
-          'https://images.unsplash.com/photo-1513910367299-bce8d8a0ebf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 21,
-        name: 'Angela Fisher',
-        imageUrl:
-          'https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 14,
-        name: 'Jenny Wilson',
-        imageUrl:
-          'https://images.unsplash.com/photo-1507101105822-7472b28e22ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 16,
-        name: 'Benjamin Russel',
-        imageUrl:
-          'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: 'Set 3',
-    href: '#',
-    author: { name: 'Courtney Henry', href: '#' },
-    date: '5d ago',
-    dateTime: '2023-01-20T20:12Z',
-    status: 'active',
-    totalComments: 15,
-    commenters: [
-      {
-        id: 11,
-        name: 'Kristin Watson',
-        imageUrl:
-          'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 6,
-        name: 'Tom Cook',
-        imageUrl:
-          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 10,
-        name: 'Emily Selman',
-        imageUrl:
-          'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        id: 16,
-        name: 'Benjamin Russel',
-        imageUrl:
-          'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    ],
-  },
+    {
+        id: 1,
+        title: 'Technical Evaluators',
+        href: '#',
+        author: {name: 'Leslie Alexander', href: '#'},
+        date: '2d ago',
+        dateTime: '2023-01-23T22:34Z',
+        status: 'active',
+        totalComments: 24,
+        commenters: [
+            {
+                id: 12,
+                name: 'Emma Dorsey',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 6,
+                name: 'Tom Cook',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 4,
+                name: 'Lindsay Walton',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 16,
+                name: 'Benjamin Russel',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 23,
+                name: 'Hector Gibbons',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+        ],
+    },
+    {
+        id: 3,
+        title: 'Industry & Domain Expert ',
+        href: '#',
+        author: {name: 'Dries Vincent', href: '#'},
+        date: '3d ago',
+        dateTime: '2023-01-22T12:59Z',
+        status: 'resolved',
+        totalComments: 22,
+        commenters: [
+            {
+                id: 19,
+                name: 'Lawrence Hunter',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1513910367299-bce8d8a0ebf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 21,
+                name: 'Angela Fisher',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 14,
+                name: 'Jenny Wilson',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1507101105822-7472b28e22ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 16,
+                name: 'Benjamin Russel',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+        ],
+    },
+    {
+        id: 5,
+        title: 'Business & Impact Assessor',
+        href: '#',
+        author: {name: 'Courtney Henry', href: '#'},
+        date: '5d ago',
+        dateTime: '2023-01-20T20:12Z',
+        status: 'active',
+        totalComments: 15,
+        commenters: [
+            {
+                id: 11,
+                name: 'Kristin Watson',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 6,
+                name: 'Tom Cook',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 10,
+                name: 'Emily Selman',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+            {
+                id: 16,
+                name: 'Benjamin Russel',
+                imageUrl:
+                    'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            },
+        ],
+    },
 ]

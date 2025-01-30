@@ -1,47 +1,87 @@
-import {motion} from "framer-motion"
-import {User} from "lucide-react"
+"use client"
 import React from "react"
+import { motion } from "framer-motion"
+import { User } from "lucide-react"
 
-export default function ProfileCard
-    ({title, description,percentage, index}) {
-    const color = percentage > 50 ? "bg-green-100" : "bg-red-100"
-    const text = percentage > 50 ? "text-green-600" : "text-red-600"
+
+export default function ProfileCard({ title, description, percentage, role, index }) {
+    const getProgressColors = (percentage) => {
+        if (percentage >= 75) {
+            return {
+                bg: "bg-gradient-to-r from-emerald-50 to-emerald-100",
+                bar: "bg-gradient-to-r from-emerald-400 to-emerald-500",
+                text: "text-emerald-700",
+            }
+        } else if (percentage >= 50) {
+            return {
+                bg: "bg-gradient-to-r from-blue-50 to-blue-100",
+                bar: "bg-gradient-to-r from-blue-400 to-blue-500",
+                text: "text-blue-700",
+            }
+        } else if (percentage >= 25) {
+            return {
+                bg: "bg-gradient-to-r from-amber-50 to-amber-100",
+                bar: "bg-gradient-to-r from-amber-400 to-amber-500",
+                text: "text-amber-700",
+            }
+        } else {
+            return {
+                bg: "bg-gradient-to-r from-rose-50 to-rose-100",
+                bar: "bg-gradient-to-r from-rose-400 to-rose-500",
+                text: "text-rose-700",
+            }
+        }
+    }
+
+    const colors = getProgressColors(percentage)
 
     return (
         <motion.div
-            className="bg-gray-50 rounded overflow-hidden w-full flex flex-col justify-between"
+            className="bg-white rounded-xl overflow-hidden w-full flex flex-col justify-between  shadow-sm hover:shadow-md transition-shadow duration-200"
             key={title}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
         >
-            <div className="p-2">
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center">
-                        <User className="w-4 h-4 text-gray-400"/>
+            <div className="p-4 space-y-3">
+                <div className="flex items-end gap-2">
+                    <motion.div
+                        initial={{scale: 0.8}}
+                        animate={{scale: 1}}
+                        transition={{delay: index * 0.1 + 0.2, type: "spring"}}
+                        className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex items-center justify-center shadow-inner"
+                    >
+                        <User className="w-6 h-6 text-gray-500"/>
+                    </motion.div>
+                    <div className="flex flex-col space-y-1">
+                        <div className="flex items-start justify-between">
+                            <div>
+                                <h2 className="text-base font-semibold text-gray-900 leading-tight">{title}</h2>
+                                <p className="text-sm font-medium text-gray-500">{role}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex-1">
-                        <h2 className="text-sm font-semibold text-gray-900 mb-1">{title}</h2>
-                        <p className="text-sm text-gray-500">{description}</p>
-                    </div>
-                    <button className="text-gray-400 hover:text-gray-600 p-1">
-                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <circle cx="12" cy="12" r="1"/>
-                            <circle cx="12" cy="5" r="1"/>
-                            <circle cx="12" cy="19" r="1"/>
-                        </svg>
-                    </button>
                 </div>
+                <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+
             </div>
-            <div className="mt-2 relative">
-                <motion.div
-                    className={`${color} text-center py-2  h-8`}
-                    initial={{width: 0}}
-                    animate={{width: `${percentage}%`}}
-                    transition={{duration: 1, delay: 0.5}}
+            <div className={`${colors.bg} p-4 mt-2`}>
+                <div className="relative h-2 bg-white/50 rounded-full overflow-hidden">
+                    <motion.div
+                        className={`absolute inset-y-0 left-0 ${colors.bar} rounded-full`}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${percentage}%` }}
+                        transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                    />
+                </div>
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className={`text-sm font-semibold ${colors.text} mt-2 text-center`}
                 >
-                    <span className={`text-sm absolute font-semibold ${text} left-[50%]`}>{percentage}%</span>
-                </motion.div>
+                    {percentage}% Recommended
+                </motion.p>
             </div>
         </motion.div>
     )
