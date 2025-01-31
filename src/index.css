@@ -55,8 +55,14 @@ body {
 }
 
 h1 {
-    @apply text-5xl font-bold text-gray-800;
+    @apply text-3xl font-bold text-gray-800;
     font-family: 'Helvetica Compressed', sans-serif;
+}
+
+@media (min-width: 640px) {
+    h1 {
+        @apply text-5xl;
+    }
 }
 
 h2 {

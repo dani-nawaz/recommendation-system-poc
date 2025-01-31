@@ -10,8 +10,8 @@ function App() {
         <Layout>
             <Case/>
             <Problem/>
-            <Solution/>
-            <HowItWorks/>
+            {/*<Solution/>*/}
+            {/*<HowItWorks/>*/}
         </Layout>
     </>)
 }
@@ -58,8 +58,8 @@ const Layout = ({children}) => {
                     }}
                 >
                     <div className="w-full h-full">
-                        <section className="px-26 h-screen">
-                            <div className="border-l border-gray-400 px-6 h-full flex items-center">
+                        <section className="px-12 md:px-26 h-screen">
+                            <div className="border-l border-gray-400 px-2 md:px-6 h-full flex items-center">
                                 {React.cloneElement(child, { setActiveSection })}
                             </div>
                         </section>
