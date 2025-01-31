@@ -1,6 +1,6 @@
 import React from "react";
-import image from "../src/assets/asset.jpg";
-import video from "../src/assets/gif.mp4";
+import image from "../src/assets/Images/asset.jpg";
+import video from "../src/assets/Images/gif.mp4";
 
 function ProposalCard({title, description}) {
     return (
@@ -65,7 +65,7 @@ export default function Problem() {
                         stroke="black" strokeWidth="3" strokeLinecap="round"/>
                 </svg>
                  <video src={video} alt="" loop autoPlay muted/>
-                <img src={image} alt="" className="size-48"/>
+                {/*<img src={image} alt="" className="size-48"/>*/}
             </div>
             <div className="grid grid-cols-3  gap-6">
                 <EvaluatorCard name="Dr. Evelyn Carter" title="Renewable Energy Scientist & Rock Climber"
