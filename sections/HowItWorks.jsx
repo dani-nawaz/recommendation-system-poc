@@ -261,7 +261,6 @@ export default function HowItWorks() {
     const [thinkingSteps, setThinkingSteps] = useState([])
     const [showParticles, setShowParticles] = useState(false)
     const [evaluatorSet, setEvaluatorSet] = useState(set[0])
-    console.log(evaluatorSet, "SSSSS")
 
     const handleProposalClick = (id) => {
         setEvaluatorSet(set[id - 1])
@@ -311,7 +310,7 @@ export default function HowItWorks() {
     }
 
     return (
-        <article className="flex flex-col gap-8 p-6">
+        <article className="flex flex-col gap-4 sm:gap-8 p-6 w-full h-screen overflow-x-scroll pb-32">
             <motion.h1
                 className="text-4xl font-bold"
                 initial={{opacity: 0, y: -20}}
@@ -321,6 +320,9 @@ export default function HowItWorks() {
                 How it works?
             </motion.h1>
             <FirstStep onProposalClick={handleProposalClick}/>
+            <SecondStep onEvaluatorListClick={handleEvaluatorListClick}/>
+            <ThirdStep onRecommendationClick={handleRecommendationClick}/>
+            <FourthStep evaluatorSets={evaluatorSet}/>
             {currentStep >= 1 && (
                 <>
                     <SecondStep onEvaluatorListClick={handleEvaluatorListClick}/>
@@ -363,66 +365,57 @@ function FirstStep({
         setSelectedProposal(id)
         onProposalClick(id)
     }
-
     return (
-        <motion.div
-            className="flex flex-col gap-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+        <SectionLayout
+            title="1. Select any proposal"
+            decription="Select any proposal from the list below to get started."
         >
-            <h2 className="text-3xl font-semibold text-gray-800">1. Select Any Proposal</h2>
-            <p className="text-lg text-gray-600">Select any proposal from the list below to get started.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 overflow-y-auto w-full gap-2"
+                 style={{display: "grid", gridTemplateColumns: "200px 200px 200px"}}>
                 {mailingLists.map((mailingList) => (
                     <motion.div
                         key={mailingList.id}
-                        className={`relative flex flex-col gap-3 bg-white p-6 rounded-lg cursor-pointer transition-all duration-300 ease-in-out
+                        className={`relative flex flex-col gap-3 bg-white p-4 rounded-lg cursor-pointer transition-all duration-300 ease-in-out
                         ${
                             selectedProposal === mailingList.id
                                 ? "ring-2 ring-blue-500 shadow-lg shadow-blue-100"
                                 : "hover:shadow-md border border-gray-200"
                         }`}
                         onClick={() => handleProposalClick(mailingList.id)}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{scale: 1.02}}
+                        whileTap={{scale: 0.98}}
                     >
                         <AnimatePresence>
                             {selectedProposal === mailingList.id && (
                                 <motion.div
                                     className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full p-1"
-                                    initial={{ opacity: 0, scale: 0.5 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.5 }}
-                                    transition={{ duration: 0.2 }}
+                                    initial={{opacity: 0, scale: 0.5}}
+                                    animate={{opacity: 1, scale: 1}}
+                                    exit={{opacity: 0, scale: 0.5}}
+                                    transition={{duration: 0.2}}
                                 >
-                                    <Check size={16} />
+                                    <Check size={16}/>
                                 </motion.div>
                             )}
                         </AnimatePresence>
-                        <h3 className="text-xl font-semibold text-gray-800">{mailingList.title}</h3>
-                        <p className="text-sm text-gray-600">{mailingList.description}</p>
+                        <h3 className="text-sm sm:text-xl font-semibold text-gray-800">{mailingList.title}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 font">{mailingList.description}</p>
                     </motion.div>
                 ))}
             </div>
-        </motion.div>
+        </SectionLayout>
     )
 }
 
 function SecondStep({onEvaluatorListClick}) {
     return (
-        <motion.div
-            className="flex flex-col gap-4"
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5}}
-        >
-            <h2 className="text-2xl">2. Select Evaluators List</h2>
-            <p className="text-lg">Select any evaluators from the list below to get started.</p>
-            <div className="flex gap-4">
+        <SectionLayout title="2. Select Evaluators List"
+                       decription="Select any evaluators from the list below to get started.">
+            <div className="flex gap-4 overflow-y-scroll"
+                 style={{display: "grid", gridTemplateColumns: "215px 215px 215px"}}>
                 {discussions.map((discussion) => (
                     <motion.div
-                        className="flex flex-col gap-2 bg-gray-50 hover:bg-white hover:border-gray-500 p-4 rounded cursor-pointer"
+                        className="flex flex-col gap-2 bg-white hover:bg-white hover:border-gray-500 p-4 rounded cursor-pointer"
                         onClick={onEvaluatorListClick}
                         whileHover={{scale: 1.05}}
                         whileTap={{scale: 0.95}}
@@ -465,23 +458,17 @@ function SecondStep({onEvaluatorListClick}) {
                     </motion.div>
                 ))}
             </div>
-        </motion.div>
+        </SectionLayout>
     )
 }
 
 function ThirdStep({onRecommendationClick}) {
     return (
-        <motion.div
-            className="flex flex-col gap-4"
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.5}}
+        <SectionLayout
+            title="3. Click the Recommendation button"
         >
-            <h2 className="text-2xl">
-                3. Click the <span className="text-cyan-700">Recommendation</span> button
-            </h2>
             <motion.button
-                className="bg-cyan-600 text-xl text-gray-50 px-4 py-4 flex gap-4 rounded w-max cursor-pointer items-center"
+                className="bg-cyan-600 text-xs sm:text-xl text-gray-50 p-2 sm:px-4 sm:py-4 flex gap-1 sm:gap-4 rounded w-max cursor-pointer items-center"
                 onClick={onRecommendationClick}
                 whileHover={{scale: 1.05}}
                 whileTap={{scale: 0.95}}
@@ -493,7 +480,7 @@ function ThirdStep({onRecommendationClick}) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-6"
+                    className="size-4 sm:size-6"
                 >
                     <path
                         strokeLinecap="round"
@@ -502,7 +489,7 @@ function ThirdStep({onRecommendationClick}) {
                     />
                 </svg>
             </motion.button>
-        </motion.div>
+        </SectionLayout>
     )
 }
 
@@ -519,7 +506,7 @@ function FourthStep({evaluatorSets}) {
             transition={{duration: 0.5}}
         >
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl">4. Get instant, AI-optimized evaluator recommendations</h2>
+                <h2 className="text-sm sm:text-3xl font-normal text-gray-800">4. Get instant, AI-optimized evaluator recommendations</h2>
                 <div className="flex justify-between items-center">
                     <motion.button
                         whileHover={{scale: 1.05}}
@@ -551,7 +538,7 @@ function FourthStep({evaluatorSets}) {
             </div>
 
             <motion.div
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-4 overflow-y-scroll grid-custom-col sm:grid-cols-2"
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
                 transition={{duration: 0.5}}
@@ -582,6 +569,20 @@ function FourthStep({evaluatorSets}) {
             </div>
         </motion.div>
     );
+}
+
+function SectionLayout({title, decription, children}) {
+    return (
+        <motion.div
+            className="flex flex-col gap-1 sm:gap-4 w-full"
+            initial={{opacity: 0, y: 20}}
+            animate={{opacity: 1, y: 0}}
+            transition={{duration: 0.5}}
+        >
+            <h2 className="text-base sm:text-3xl font-semibold text-gray-800">{title}</h2>
+            <p className="text-sm sm:text-base font-semibold text-gray-600">{decription}</p>
+            {children}
+        </motion.div>)
 }
 
 

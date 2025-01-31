@@ -49,20 +49,20 @@ export default function ProfileCard({ title, description, percentage, role, inde
                         initial={{scale: 0.8}}
                         animate={{scale: 1}}
                         transition={{delay: index * 0.1 + 0.2, type: "spring"}}
-                        className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex items-center justify-center shadow-inner"
+                        className="size-6 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex items-center justify-center shadow-inner"
                     >
-                        <User className="w-6 h-6 text-gray-500"/>
+                        <User className="size-3 sm:w-6 sm:h-6 text-gray-500"/>
                     </motion.div>
                     <div className="flex flex-col space-y-1">
                         <div className="flex items-start justify-between">
                             <div>
-                                <h2 className="text-base font-semibold text-gray-900 leading-tight">{title}</h2>
-                                <p className="text-sm font-medium text-gray-500">{role}</p>
+                                <h2 className="text-sm sm:text-base font-semibold text-gray-900 leading-tight">{title}</h2>
+                                <p className="text-xs sm:text-sm font-medium text-gray-500">{role}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{description}</p>
 
             </div>
             <div className={`${colors.bg} p-4 mt-2`}>

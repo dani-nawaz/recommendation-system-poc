@@ -11,7 +11,7 @@ function App() {
             <Case/>
             <Problem/>
             <Solution/>
-            {/*<HowItWorks/>*/}
+            <HowItWorks/>
         </Layout>
     </>)
 }

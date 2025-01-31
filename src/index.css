@@ -87,3 +87,13 @@ p {
 .error {
     @apply bg-red-50 text-red-500;
 }
+
+.grid-custom-col {
+    grid-template-columns: 230px 230px;
+}
+
+@media (min-width: 640px) {
+    .grid-custom-col {
+        grid-template-columns: 1fr 1fr;
+    }
+}
