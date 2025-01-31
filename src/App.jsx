@@ -8,8 +8,8 @@ import {Solution} from "../sections/Solution.jsx";
 function App() {
     return (<>
         <Layout>
-            {/*<Case/>*/}
-            {/*<Problem/>*/}
+            <Case/>
+            <Problem/>
             <Solution/>
             {/*<HowItWorks/>*/}
         </Layout>
