@@ -22,6 +22,7 @@ const Layout = ({children}) => {
     const [activeSection, setActiveSection] = useState(0);
     const [isScrolling, setIsScrolling] = useState(false);
     const handleScroll = (e) => {
+        console.log("sdads")
         if (isScrolling) return;
 
         setIsScrolling(true);

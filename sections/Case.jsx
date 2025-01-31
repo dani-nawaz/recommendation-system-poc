@@ -3,7 +3,7 @@ import React from "react";
 export default function Case({setActiveSection}) {
     console.log(setActiveSection)
     return (
-        <article className="flex flex-col  gap-6 sm:gap-12 justify-start w-full">
+        <article className="flex flex-col  gap-6 sm:gap-12 justify-center w-full h-screen ">
             <div className="flex flex-col gap-4">
                 <h1>
                     Case

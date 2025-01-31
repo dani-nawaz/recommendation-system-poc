@@ -205,13 +205,13 @@ const ThinkingProcess = ({steps, isVisible}) => {
                     animate={{opacity: 1, height: "auto"}}
                     exit={{opacity: 0, height: 0}}
                     transition={{duration: 0.5}}
-                    className="my-4 -mt-4 bg-gray-50 p-4 rounded-lg"
+                    className="my-4  bg-gray-50 p-4 rounded-lg"
                 >
                     {steps.map((step, index) => (
                         <div key={step} className="flex items-start">
                             <div className="flex flex-col items-center">
                                 <motion.div
-                                    className={`w-4 h-4 rounded-full ${
+                                    className={`size-2 sm:w-4 sm:h-4 rounded-full ${
                                         index < currentStep ? "bg-green-500" : index === currentStep ? "bg-blue-500" : "bg-gray-300"
                                     }`}
                                     initial={{scale: 0}}
@@ -234,7 +234,7 @@ const ThinkingProcess = ({steps, isVisible}) => {
                                 )}
                             </div>
                             <motion.span
-                                className={`ml-3 ${
+                                className={`ml-3 text-xs sm:text-sm ${
                                     index < currentStep
                                         ? "text-green-600"
                                         : index === currentStep
@@ -320,9 +320,6 @@ export default function HowItWorks() {
                 How it works?
             </motion.h1>
             <FirstStep onProposalClick={handleProposalClick}/>
-            <SecondStep onEvaluatorListClick={handleEvaluatorListClick}/>
-            <ThirdStep onRecommendationClick={handleRecommendationClick}/>
-            <FourthStep evaluatorSets={evaluatorSet}/>
             {currentStep >= 1 && (
                 <>
                     <SecondStep onEvaluatorListClick={handleEvaluatorListClick}/>
@@ -370,7 +367,7 @@ function FirstStep({
             title="1. Select any proposal"
             decription="Select any proposal from the list below to get started."
         >
-            <div className="grid grid-cols-3 overflow-y-auto w-full gap-2"
+            <div className="grid grid-cols-3 overflow-y-auto w-full gap-2 px-2 py-8 sm:p-0"
                  style={{display: "grid", gridTemplateColumns: "200px 200px 200px"}}>
                 {mailingLists.map((mailingList) => (
                     <motion.div
@@ -506,7 +503,8 @@ function FourthStep({evaluatorSets}) {
             transition={{duration: 0.5}}
         >
             <div className="flex items-center justify-between">
-                <h2 className="text-sm sm:text-3xl font-normal text-gray-800">4. Get instant, AI-optimized evaluator recommendations</h2>
+                <h2 className="text-sm sm:text-3xl font-normal text-gray-800">4. Get instant, AI-optimized evaluator
+                    recommendations</h2>
                 <div className="flex justify-between items-center">
                     <motion.button
                         whileHover={{scale: 1.05}}

@@ -2,7 +2,7 @@ import React from "react";
 
 export function Solution({setActiveSection}) {
     return (
-        <article className="flex flex-col  sm:gap-12 justify-start w-full">
+        <article className="flex flex-col  sm:gap-12 justify-start w-full h-screen">
             <div className="flex flex-col gap-2 sm:gap-4">
                 <h1>
                     Solution
