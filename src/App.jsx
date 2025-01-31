@@ -9,8 +9,8 @@ function App() {
     return (<>
         <Layout>
             {/*<Case/>*/}
-            <Problem/>
-            {/*<Solution/>*/}
+            {/*<Problem/>*/}
+            <Solution/>
             {/*<HowItWorks/>*/}
         </Layout>
     </>)
