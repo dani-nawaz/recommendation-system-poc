@@ -49,7 +49,7 @@ export default function Problem() {
     ]
 
     const [proposalDatas, setProposalDatas] = React.useState(proposalData)
-    const [evaluatorDatas, setEvaluatorDatas] = React.useState(proposalData)
+    const [evaluatorDatas, setEvaluatorDatas] = React.useState(evaluatorData)
 
     function getCurrentWindowSize() {
         const width = window.innerWidth;
