@@ -39,15 +39,15 @@ export default function Problem({setActiveSection}) {
     const proposalData = [
         {
             title: "GreenTech Innovation Grant",
-            description: "A proposal focused on developing biodegradable batteries that provide long-lasting energy storage without harming the environment. The goal is to replace lithium-ion batteries with sustainable alternatives."
+            description: "A proposal focused on developing biodegradable batteries that provide long-lasting energy storage without harming the environment."
         },
         {
             title: "Next-Gen EdTech Platform",
-            description: "A gamified learning app that teaches kids financial literacy through interactive storytelling and virtual investments. The app aims to make learning about money fun and engaging for children aged 8–14."
+            description: "A gamified learning app that teaches kids financial literacy through interactive storytelling and virtual investments.."
         },
         {
             title: "AI-Powered Remote Health Diagnostics",
-            description: "A telemedicine service with smart wearables that track vital signs and detect early symptoms of chronic diseases like diabetes and heart conditions, helping doctors provide remote consultations."
+            description: "A telemedicine service with smart wearables that track vital signs and detect early symptoms of chronic diseases."
         }
     ]
 
@@ -79,18 +79,18 @@ export default function Problem({setActiveSection}) {
                     Finding the right evaluator among thousands of experts for each unique proposal.
                 </h3>
             </div>
-            <div className="flex overflow-y-auto w-full gap-6"
+            <div className="flex overflow-y-auto w-full gap-2 sm:gap-6"
                  style={{display: "grid", gridTemplateColumns: "230px 230px 230px"}}>
                 {proposalData.map((proposal, index) => (
                     <ProposalCard key={index} title={proposal.title} description={proposal.description}/>
                 ))}
             </div>
-            <div className="hidden md:flex gap-12 justify-center">
+            <div className="hidden md:flex lg:hidden gap-12 justify-center">
                 <video src={video} alt="" loop autoPlay={false}
                        controls={false} muted/>
                 {/*<img src={image} alt="" className="size-48"/>*/}
             </div>
-            <div className="flex overflow-y-scroll gap-6"
+            <div className="flex overflow-y-scroll gap-2 sm:gap-6"
                  style={{display: "grid", gridTemplateColumns: "230px 230px 230px"}}>
                 {evaluatorData.map((evaluator, index) => (
                     <EvaluatorCard key={index} name={evaluator.name} title={evaluator.title} src={evaluator.src}/>

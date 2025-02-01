@@ -71,7 +71,7 @@ const Layout = ({children}) => {
             ))}
 
             {/* Navigation dots */}
-            <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4">
+            <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-40">
                 {React.Children.map(children, (_, index) => (
                     <button
                         onClick={() => setActiveSection(index)}

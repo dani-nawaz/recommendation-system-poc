@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
 import {ParticleEffect} from "./particle-effect"
 import ProfileCard from "./ProfileCard"
@@ -187,6 +187,7 @@ const set = [greenTechEvaluators, aiHealthEvaluators, edTechEvaluators]
 const ThinkingProcess = ({steps, isVisible}) => {
 
     const [currentStep, setCurrentStep] = useState(0)
+    const ref = useRef(null)
 
     useEffect(() => {
         if (isVisible) {
@@ -196,6 +197,9 @@ const ThinkingProcess = ({steps, isVisible}) => {
             return () => clearInterval(interval)
         }
     }, [isVisible, steps.length])
+    useEffect(() => {
+      ref?.current?.scrollIntoView({ behavior: "smooth" });
+    }, []);
 
     return (
         <AnimatePresence>
@@ -206,6 +210,7 @@ const ThinkingProcess = ({steps, isVisible}) => {
                     exit={{opacity: 0, height: 0}}
                     transition={{duration: 0.5}}
                     className="my-4  bg-gray-50 p-4 rounded-lg"
+                    ref={ref}
                 >
                     {steps.map((step, index) => (
                         <div key={step} className="flex items-start">
@@ -310,7 +315,7 @@ export default function HowItWorks() {
     }
 
     return (
-        <article className="flex flex-col gap-4 sm:gap-8 p-6 w-full h-screen overflow-x-scroll pb-32">
+        <article className="flex flex-col gap-2 sm:gap-8 pb-48 sm:p-6 w-full h-screen overflow-x-scroll">
             <motion.h1
                 className="text-4xl font-bold"
                 initial={{opacity: 0, y: -20}}
@@ -462,6 +467,16 @@ function SecondStep({onEvaluatorListClick}) {
 }
 
 function ThirdStep({onRecommendationClick}) {
+    const ref = useRef(null);
+
+    // if (!evaluatorSets) return null
+    useEffect(() => {
+        ref?.current?.scrollIntoView( {
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
+          });
+    }, []);
     return (
         <SectionLayout
             title="3. Click the Recommendation button"
@@ -471,6 +486,7 @@ function ThirdStep({onRecommendationClick}) {
                 onClick={onRecommendationClick}
                 whileHover={{scale: 1.05}}
                 whileTap={{scale: 0.95}}
+                ref={ref}
             >
                 Get AI Recommendation
                 <svg
@@ -494,9 +510,17 @@ function ThirdStep({onRecommendationClick}) {
 
 function FourthStep({evaluatorSets}) {
     const [currentSet, setCurrentSet] = useState(0);
+    const ref = useRef(null);
 
-    if (!evaluatorSets) return null
-    console.log(evaluatorSets)
+    // if (!evaluatorSets) return null
+    useEffect(() => {
+        ref?.current?.scrollIntoView( {
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
+          });
+    }, []);
+
     return (
         <motion.div
             className="flex flex-col gap-4"
@@ -542,6 +566,7 @@ function FourthStep({evaluatorSets}) {
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
                 transition={{duration: 0.5}}
+                ref={ref}
             >
                 {evaluatorSets[currentSet].map((evaluator, index) => (
                     <ProfileCard
