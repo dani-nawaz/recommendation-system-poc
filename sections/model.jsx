@@ -30,7 +30,7 @@ export default function Model() {
     ];
 
     return (
-        <article className="flex flex-col gap-6  justify-center overflow-hidden  sm:pb-0 h-screen">
+        <article className="flex flex-col gap-6 justify-center overflow-hidden pb-12 sm:pb-0 h-dvh">
             <div className="flex flex-col gap-2 sm:gap-4">
                 <h1>
                     Solution
