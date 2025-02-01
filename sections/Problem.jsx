@@ -103,6 +103,5 @@ export default function Problem({setActiveSection}) {
             </button>
 
         </article>
-
     )
 }

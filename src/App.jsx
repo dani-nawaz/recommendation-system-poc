@@ -4,6 +4,7 @@ import HowItWorks from "../sections/HowItWorks.jsx";
 import Case from "../sections/Case.jsx";
 import Problem from "../sections/Problem.jsx";
 import {Solution} from "../sections/Solution.jsx";
+import Model from "../sections/model.jsx";
 
 function App() {
     return (<>
@@ -12,6 +13,7 @@ function App() {
             <Problem/>
             <Solution/>
             <HowItWorks/>
+            <Model/>
         </Layout>
     </>)
 }
