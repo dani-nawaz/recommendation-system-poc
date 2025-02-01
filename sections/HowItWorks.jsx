@@ -4,7 +4,7 @@ import React, {useEffect, useRef, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
 import {ParticleEffect} from "./particle-effect"
 import ProfileCard from "./ProfileCard"
-import {Check} from "lucide-react"
+import {Check, ChevronLeft, ChevronRight} from "lucide-react"
 
 const mailingLists = [
     {
@@ -183,7 +183,7 @@ const edTechEvaluators = [
         }
     ]
 ];
-const set = [greenTechEvaluators, aiHealthEvaluators, edTechEvaluators]
+const set = [greenTechEvaluators,edTechEvaluators,aiHealthEvaluators]
 const ThinkingProcess = ({steps, isVisible}) => {
 
     const [currentStep, setCurrentStep] = useState(0)
@@ -420,7 +420,7 @@ function SecondStep({onEvaluatorListClick}) {
     return (
         <SectionLayout title="2. Select Evaluators List"
                        decription="Select any evaluators from the list below to get started.">
-            <div className="flex gap-4 overflow-y-scroll p-2"
+            <div className="flex gap-4 overflow-y-scroll sm:overflow-hidden p-2"
                  style={{display: "grid", gridTemplateColumns: "215px 215px 215px"}}>
                 {discussions.map((discussion) => (
                     <motion.div
@@ -439,7 +439,7 @@ function SecondStep({onEvaluatorListClick}) {
                             <div className="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500">
                                 <p>
                                     <a href={discussion.author.href} className="hover:underline">
-                                        {discussion.author.name}
+                                       last updated
                                     </a>
                                 </p>
                                 <svg viewBox="0 0 2 2" className="size-0.5 fill-current">
@@ -533,9 +533,7 @@ function FourthStep({evaluatorSets, setActiveSection}) {
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5}}
         >
-            <div className="flex items-center justify-between">
-                <h2 className="text-sm sm:text-3xl font-normal text-gray-800">4. Get instant, AI-optimized evaluator
-                    recommendations</h2>
+            <div className="flex items-center justify-end">
                 <div className="flex justify-between items-center">
                     <motion.button
                         whileHover={{scale: 1.05}}
@@ -548,7 +546,7 @@ function FourthStep({evaluatorSets, setActiveSection}) {
                                 : 'text-blue-500 hover:bg-blue-50'
                         }`}
                     >
-                        ←
+                    <ChevronLeft className="size-6"/>
                     </motion.button>
                     <motion.button
                         whileHover={{scale: 1.05}}
@@ -561,13 +559,13 @@ function FourthStep({evaluatorSets, setActiveSection}) {
                                 : 'text-blue-500 hover:bg-blue-50'
                         }`}
                     >
-                        →
+                    <ChevronRight className="size-6"/>
                     </motion.button>
                 </div>
             </div>
 
             <motion.div
-                className="grid grid-cols-2 gap-4 overflow-y-scroll grid-custom-col sm:grid-cols-2"
+                className="grid grid-cols-2 gap-4 overflow-y-scroll sm:overflow-hidden p-2 grid-custom-col sm:grid-cols-2"
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
                 transition={{duration: 0.5}}

@@ -30,7 +30,7 @@ export default function Model() {
     ];
 
     return (
-        <article className="flex flex-col gap-6 justify-center overflow-hidden pb-12 sm:pb-0 h-dvh">
+        <article className="flex flex-col gap-6 justify-center overflow-hidden pb- sm:pb-0 h-dvh">
             <div className="flex flex-col gap-2 sm:gap-4">
                 <h1>
                     Solution
@@ -39,8 +39,8 @@ export default function Model() {
                     Proven success, endless possibilities.
                 </h3>
                 <h3 className="text-base sm:text-3xl font-semibold text-gray-600">
-                    The model that powered Alex's success is not just a one-time solution—it's a flexible, adaptable
-                    system designed for businesses like yours.
+                The model that powered Alex’s success is not just a one-time solution—it’s a flexible, adaptable system designed for businesses like yours.
+                Built on our powerful platform, it can be tailored to fit your unique needs and seamlessly integrated into your existing operations.
                 </h3>
             </div>
 
@@ -51,12 +51,6 @@ export default function Model() {
                 ))}
             </div>
 
-            <div className="flex flex-col gap-4 max-w-2xl">
-                <p className="text-base sm:text-lg text-gray-600">
-                     Whether you want to enhance efficiency, optimize
-                    decision-making, or create personalized experiences, this model is ready to transform your business.
-                </p>
-            </div>
             <div className='flex justify-center'>
             <button
                 onClick={() => window.location.href = 'https://www.linkedin.com/company/clickchain/'}
