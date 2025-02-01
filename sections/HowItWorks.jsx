@@ -320,7 +320,7 @@ export default function HowItWorks() {
                 How it works?
             </motion.h1>
             <FirstStep onProposalClick={handleProposalClick}/>
-            <FourthStep evaluatorSets={evaluatorSet}/>
+            {/*<FourthStep evaluatorSets={evaluatorSet}/>*/}
 
             {currentStep >= 1 && (
                 <>

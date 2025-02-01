@@ -35,7 +35,7 @@ export function EvaluatorCard({name, title, src}) {
     )
 }
 
-export default function Problem() {
+export default function Problem({setActiveSection}) {
     const proposalData = [
         {
             title: "GreenTech Innovation Grant",
@@ -96,6 +96,12 @@ export default function Problem() {
                     <EvaluatorCard key={index} name={evaluator.name} title={evaluator.title} src={evaluator.src}/>
                 ))}
             </div>
+            <button
+                onClick={() => setActiveSection(2)}
+                className="bg-cyan-600 text-base sm:text-2xl text-gray-50 px-6 py-4 flex gap-4 rounded w-max cursor-pointer items-center">
+                Want to know how we solve it?
+            </button>
+
         </article>
 
     )
