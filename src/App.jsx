@@ -75,9 +75,9 @@ const Layout = ({children}) => {
                 {React.Children.map(children, (_, index) => (
                     <button
                         onClick={() => setActiveSection(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        className={`size-5 rounded-full transition-all duration-300 ${
                             index === activeSection
-                                ? 'bg-black w-4 h-4'
+                                ? 'bg-black size-6'
                                 : 'bg-gray-300 hover:bg-gray-400'
                         }`}
                         aria-label={`Go to section ${index + 1}`}
