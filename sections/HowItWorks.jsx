@@ -187,7 +187,6 @@ const set = [greenTechEvaluators, aiHealthEvaluators, edTechEvaluators]
 const ThinkingProcess = ({steps, isVisible}) => {
 
     const [currentStep, setCurrentStep] = useState(0)
-    const ref = useRef(null)
 
     useEffect(() => {
         if (isVisible) {
@@ -197,8 +196,14 @@ const ThinkingProcess = ({steps, isVisible}) => {
             return () => clearInterval(interval)
         }
     }, [isVisible, steps.length])
+    const ref = useRef(null);
+
     useEffect(() => {
-      ref?.current?.scrollIntoView({ behavior: "smooth" });
+        ref?.current?.scrollIntoView( {
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
+          });
     }, []);
 
     return (
@@ -315,7 +320,7 @@ export default function HowItWorks({setActiveSection}) {
     }
 
     return (
-        <article className="flex flex-col gap-2 sm:gap-8 pb-28 sm:p-6 w-full h-screen overflow-x-scroll">
+        <article className="flex flex-col gap-2 sm:gap-8 sm:p-6 w-full overflow-x-scroll justify-center pb-8 sm:pb-0 h-dvh">
             <motion.h1
                 className="text-4xl font-bold"
                 initial={{opacity: 0, y: -20}}
