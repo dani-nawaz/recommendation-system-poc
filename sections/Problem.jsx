@@ -67,7 +67,7 @@ export default function Problem({setActiveSection}) {
 
 
     return (
-        <article className="flex flex-col gap-6 sm:gap-12 justify-start pt-8 overflow-hidden sm:pb-0 h-dvh">
+        <article className="flex flex-col gap-6 sm:gap-12 justify-start overflow-hidden sm:pb-0 h-dvh">
             <div className="flex flex-col gap-2 sm:gap-4">
                 <h1>
                     Problem
