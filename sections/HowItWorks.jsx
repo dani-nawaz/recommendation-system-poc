@@ -379,7 +379,7 @@ function FirstStep({
             title="1. Select any proposal"
             decription="Select any proposal from the list below to get started."
         >
-            <div className="grid grid-cols-3 overflow-y-auto w-full gap-2 px-2 py-8 sm:p-0"
+            <div className="grid grid-cols-3 overflow-y-auto w-full gap-2 px-2 py-8"
                  style={{display: "grid", gridTemplateColumns: "200px 200px 200px"}}>
                 {mailingLists.map((mailingList) => (
                     <motion.div
@@ -420,7 +420,7 @@ function SecondStep({onEvaluatorListClick}) {
     return (
         <SectionLayout title="2. Select Evaluators List"
                        decription="Select any evaluators from the list below to get started.">
-            <div className="flex gap-4 overflow-y-scroll"
+            <div className="flex gap-4 overflow-y-scroll p-2"
                  style={{display: "grid", gridTemplateColumns: "215px 215px 215px"}}>
                 {discussions.map((discussion) => (
                     <motion.div

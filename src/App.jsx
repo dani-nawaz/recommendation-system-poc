@@ -37,11 +37,11 @@ const Layout = ({children}) => {
         }
     };
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        window.addEventListener('wheel', handleScroll);
-        return () => window.removeEventListener('wheel', handleScroll);
-    }, [activeSection, children.length, isScrolling]);
+    //     window.addEventListener('wheel', handleScroll);
+    //     return () => window.removeEventListener('wheel', handleScroll);
+    // }, [activeSection, children.length, isScrolling]);
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';

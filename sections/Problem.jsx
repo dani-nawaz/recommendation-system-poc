@@ -79,7 +79,7 @@ export default function Problem({setActiveSection}) {
                     Finding the right evaluator among thousands of experts for each unique proposal.
                 </h3>
             </div>
-            <div className="flex overflow-y-auto w-full gap-2 sm:gap-6"
+            <div className="flex overflow-y-auto sm:overflow-hidden w-full gap-2 sm:gap-6"
                  style={{display: "grid", gridTemplateColumns: "230px 230px 230px"}}>
                 {proposalData.map((proposal, index) => (
                     <ProposalCard key={index} title={proposal.title} description={proposal.description}/>
@@ -90,7 +90,7 @@ export default function Problem({setActiveSection}) {
                        controls={false} muted/>
                 {/*<img src={image} alt="" className="size-48"/>*/}
             </div>
-            <div className="flex overflow-y-scroll gap-2 sm:gap-6"
+            <div className="flex overflow-y-auto sm:overflow-hidden gap-2 sm:gap-6"
                  style={{display: "grid", gridTemplateColumns: "230px 230px 230px"}}>
                 {evaluatorData.map((evaluator, index) => (
                     <EvaluatorCard key={index} name={evaluator.name} title={evaluator.title} src={evaluator.src}/>
