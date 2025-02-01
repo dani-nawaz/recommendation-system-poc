@@ -260,7 +260,7 @@ const ThinkingProcess = ({steps, isVisible}) => {
     )
 }
 
-export default function HowItWorks() {
+export default function HowItWorks({setActiveSection}) {
     const [currentStep, setCurrentStep] = useState(0)
     const [showThinking, setShowThinking] = useState(false)
     const [thinkingSteps, setThinkingSteps] = useState([])
@@ -352,7 +352,7 @@ export default function HowItWorks() {
                     animate={{opacity: 1, scale: 1}}
                     transition={{duration: 0.5, type: "spring"}}
                 >
-                    <FourthStep evaluatorSets={evaluatorSet}/>
+                    <FourthStep evaluatorSets={evaluatorSet} setActiveSection={setActiveSection}/>
                 </motion.div>
             )}
             <ThinkingProcess steps={thinkingSteps} isVisible={showThinking}/>
@@ -508,7 +508,7 @@ function ThirdStep({onRecommendationClick}) {
     )
 }
 
-function FourthStep({evaluatorSets}) {
+function FourthStep({evaluatorSets, setActiveSection}) {
     const [currentSet, setCurrentSet] = useState(0);
     const ref = useRef(null);
 
@@ -592,6 +592,11 @@ function FourthStep({evaluatorSets}) {
                     ))}
                 </div>
             </div>
+            <button
+               onClick={()=>setActiveSection(4)}
+                className="bg-cyan-600 text-base sm:text-2xl text-gray-50 px-6 py-4 flex gap-4 rounded w-max cursor-pointer items-center">
+                Get Started
+            </button>
         </motion.div>
     );
 }

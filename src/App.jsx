@@ -71,7 +71,8 @@ const Layout = ({children}) => {
             ))}
 
             {/* Navigation dots */}
-            <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-40">
+            <NavigationButtons activeSection={activeSection} setActiveSection={setActiveSection} totalSections={children.length}/>
+            {/* <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-40">
                 {React.Children.map(children, (_, index) => (
                     <button
                         onClick={() => setActiveSection(index)}
@@ -83,7 +84,52 @@ const Layout = ({children}) => {
                         aria-label={`Go to section ${index + 1}`}
                     />
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 };
+
+import { ChevronUp, ChevronDown } from "lucide-react"
+
+
+function NavigationButtons({ activeSection, setActiveSection, totalSections }) {
+  const goToPreviousSection = () => {
+    if (activeSection > 0) {
+      setActiveSection(activeSection - 1)
+    }
+  }
+
+  const goToNextSection = () => {
+    if (activeSection < totalSections - 1) {
+      setActiveSection(activeSection + 1)
+    }
+  }
+
+  return (
+    <div className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-40">
+      <button
+        onClick={goToPreviousSection}
+        className={`p-1 sm:p-2 rounded-full transition-all duration-300 ${
+          activeSection === 0 ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-black text-white hover:bg-gray-800"
+        }`}
+        disabled={activeSection === 0}
+        aria-label="Go to previous section"
+      >
+        <ChevronUp className="size-6 sm:size-8" />
+      </button>
+      <button
+        onClick={goToNextSection}
+        className={`p-1 sm:p-2 rounded-full transition-all duration-300 ${
+          activeSection === totalSections - 1
+            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+            : "bg-black text-white hover:bg-gray-800"
+        }`}
+        disabled={activeSection === totalSections - 1}
+        aria-label="Go to next section"
+      >
+        <ChevronDown className="size-6 sm:size-8" />
+      </button>
+    </div>
+  )
+}
+

@@ -52,18 +52,19 @@ export default function Model() {
             </div>
 
             <div className="flex flex-col gap-4 max-w-2xl">
-                <p className="text-xs sm:text-lg text-gray-600">
-                    Built on our powerful platform, it can be tailored to fit your unique needs and seamlessly
-                    integrated into your existing operations. Whether you want to enhance efficiency, optimize
+                <p className="text-base sm:text-lg text-gray-600">
+                     Whether you want to enhance efficiency, optimize
                     decision-making, or create personalized experiences, this model is ready to transform your business.
                 </p>
             </div>
-
+            <div className='flex justify-center'>
             <button
-                onClick={() => window.location.href = 'mailto:marketing@clickchain.com'}
+                onClick={() => window.location.href = 'https://www.linkedin.com/company/clickchain/'}
                 className="bg-cyan-600 text-base sm:text-2xl text-gray-50 px-6 py-4 flex gap-4 rounded w-max cursor-pointer items-center">
-                Get in touch with us
+                Find us
             </button>
+            </div>
+
         </article>
     );
 }
