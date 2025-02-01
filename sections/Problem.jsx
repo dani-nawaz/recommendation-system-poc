@@ -67,7 +67,7 @@ export default function Problem({setActiveSection}) {
 
 
     return (
-        <article className="flex flex-col gap-6 sm:gap-12 justify-center overflow-hidden pb-32 sm:pb-0 h-screen">
+        <article className="flex flex-col gap-6 sm:gap-12 justify-center overflow-hidden sm:pb-0 h-screen">
             <div className="flex flex-col gap-2 sm:gap-4">
                 <h1>
                     Problem
@@ -79,7 +79,7 @@ export default function Problem({setActiveSection}) {
                     Finding the right evaluator among thousands of experts for each unique proposal.
                 </h3>
             </div>
-            <div className="flex overflow-auto w-full gap-6"
+            <div className="flex overflow-y-auto w-full gap-6"
                  style={{display: "grid", gridTemplateColumns: "230px 230px 230px"}}>
                 {proposalData.map((proposal, index) => (
                     <ProposalCard key={index} title={proposal.title} description={proposal.description}/>
