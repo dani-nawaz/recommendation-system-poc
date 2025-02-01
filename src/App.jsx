@@ -61,8 +61,8 @@ const Layout = ({children}) => {
                     }}
                 >
                     <div className="w-full h-full">
-                        <section className="px-12 md:px-26 h-screen">
-                            <div className="border-l border-gray-400 px-2 md:px-6 h-full flex items-center">
+                        <section className="px-4 sm:px-26 h-screen">
+                            <div className="sm:border-l border-gray-400 px-2 md:px-6 h-full flex items-center">
                                 {React.cloneElement(child, { setActiveSection })}
                             </div>
                         </section>
