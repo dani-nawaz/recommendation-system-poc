@@ -30,7 +30,7 @@ export default function Model() {
     ];
 
     return (
-        <article className="flex flex-col gap-6 sm:gap-12 justify-start sm:justify-center overflow-hidden  sm:pb-0 h-screen">
+        <article className="flex flex-col gap-6  justify-start sm:justify-center overflow-hidden  sm:pb-0 h-screen">
             <div className="flex flex-col gap-2 sm:gap-4">
                 <h1>
                     Solution
@@ -52,7 +52,7 @@ export default function Model() {
             </div>
 
             <div className="flex flex-col gap-4 max-w-2xl">
-                <p className="text-base sm:text-lg text-gray-600">
+                <p className="text-xs sm:text-lg text-gray-600">
                     Built on our powerful platform, it can be tailored to fit your unique needs and seamlessly
                     integrated into your existing operations. Whether you want to enhance efficiency, optimize
                     decision-making, or create personalized experiences, this model is ready to transform your business.
