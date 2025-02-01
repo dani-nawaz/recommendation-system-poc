@@ -315,7 +315,7 @@ export default function HowItWorks() {
     }
 
     return (
-        <article className="flex flex-col gap-2 sm:gap-8 pb-48 sm:p-6 w-full h-screen overflow-x-scroll">
+        <article className="flex flex-col gap-2 sm:gap-8 pb-28 sm:p-6 w-full h-screen overflow-x-scroll">
             <motion.h1
                 className="text-4xl font-bold"
                 initial={{opacity: 0, y: -20}}
