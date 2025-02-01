@@ -320,6 +320,8 @@ export default function HowItWorks() {
                 How it works?
             </motion.h1>
             <FirstStep onProposalClick={handleProposalClick}/>
+            <FourthStep evaluatorSets={evaluatorSet}/>
+
             {currentStep >= 1 && (
                 <>
                     <SecondStep onEvaluatorListClick={handleEvaluatorListClick}/>
@@ -330,7 +332,7 @@ export default function HowItWorks() {
                 <motion.div className="relative">
                     <ParticleEffect onComplete={handleParticlesComplete}/>
                     <motion.div
-                        className="text-4xl font-bold text-center text-primary"
+                        className="sm:text-4xl font-bold text-center text-primary"
                         initial={{scale: 0, opacity: 0}}
                         animate={{scale: 1, opacity: 1}}
                         transition={{delay: 0.5, duration: 0.5}}

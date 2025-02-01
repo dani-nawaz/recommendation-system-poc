@@ -67,7 +67,7 @@ export default function Problem() {
 
 
     return (
-        <article className="flex flex-col gap-6 sm:gap-12 justify-start overflow-hidden pb-32 sm:pb-0 h-screen">
+        <article className="flex flex-col gap-6 sm:gap-12 justify-center overflow-hidden pb-32 sm:pb-0 h-screen">
             <div className="flex flex-col gap-2 sm:gap-4">
                 <h1>
                     Problem
