@@ -39,7 +39,7 @@ const Layout = ({children}) => {
 
     // useEffect(() => {
 
-    //     window.addEventListener('wheel', handleScroll);
+    //     wi   ndow.addEventListener('wheel', handleScroll);
     //     return () => window.removeEventListener('wheel', handleScroll);
     // }, [activeSection, children.length, isScrolling]);
 

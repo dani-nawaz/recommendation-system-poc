@@ -49,16 +49,8 @@ export default function Model() {
             </div>
 
             <div className='flex justify-start gap-4'>
-            <button
-                onClick={() => window.location.href = 'https://www.linkedin.com/company/clickchain/'}
-                className="bg-cyan-600 text-base sm:text-xl text-gray-50 p-4 flex gap-4 rounded w-max cursor-pointer items-center">
-                Find us
-            </button>
-            <button 
-                onClick={() => window.location.href = 'https://clickchain.com/'}
-                className="bg-gray-300 text-base sm:text-xl text-gray-70 p-4 flex gap-4 rounded w-max cursor-pointer items-center">
-                Back to clickchain
-                </button>
+                <a href="https://www.linkedin.com/company/clickchain/" className="bg-cyan-600 text-base sm:text-xl text-gray-50 p-4 flex gap-4 rounded w-max cursor-pointer items-center">Find us</a>
+                <a href="https://clickchain.com/" className="bg-gray-300 text-base sm:text-xl text-gray-70 p-4 flex gap-4 rounded w-max cursor-pointer items-center">Back to clickchain</a>
             </div>
 
         </article>
