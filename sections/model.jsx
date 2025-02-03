@@ -51,7 +51,7 @@ export default function Model() {
             <div className='flex justify-start gap-4'>
                 <a href="https://www.linkedin.com/company/clickchain/"   target="_blank"
   rel="noopener noreferrer" className="bg-cyan-600 text-base sm:text-xl text-gray-50 p-4 flex gap-4 rounded w-max cursor-pointer items-center">Find us</a>
-                <a href="https://clickchain.com/" className="bg-gray-300 text-base sm:text-xl text-gray-70 p-4 flex gap-4 rounded w-max cursor-pointer items-center">Back to clickchain</a>
+                <a href="https://clickchain.com/" className="bg-gray-300 text-base sm:text-xl text-gray-70 p-4 flex gap-4 rounded w-max cursor-pointer items-center">Back to Click Chain!</a>
             </div>
 
         </article>
